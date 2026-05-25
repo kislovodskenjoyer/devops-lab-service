@@ -6,18 +6,16 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.VM_HOST }}
-          username: ${{ secrets.VM_USER }}
-          key: ${{ secrets.VM_SSH_KEY }}
-          script: |
-            cd ~/devops-lab-service
-            git pull origin master
-            cd docker
-            docker-compose down
-            docker-compose up -d --build
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy
+        run: |
+          cd ~/devops-lab-service
+          git pull origin master
+          cd docker
+          docker-compose down
+          docker-compose up -d --build
