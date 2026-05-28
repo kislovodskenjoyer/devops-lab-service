@@ -17,8 +17,8 @@ services:
       - ../monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
     container_name: devops-prometheus
 
-  grafana:
-    image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
-    container_name: devops-grafana
+  #grafana:
+  #  image: grafana/grafana:latest
+  #  ports:
+  #    - "3000:3000"
+  #  container_name: devops-grafana
